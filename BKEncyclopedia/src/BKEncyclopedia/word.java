@@ -3,7 +3,7 @@ package BKEncyclopedia;
 import java.util.*;
 
 public class word {
-	Scanner inputWord = new Scanner(system.in);
+	Scanner inputWord = new Scanner(System.in);
 	
 	private String Tu;
 	

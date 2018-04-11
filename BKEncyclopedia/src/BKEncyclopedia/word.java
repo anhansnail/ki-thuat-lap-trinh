@@ -8,8 +8,6 @@ public class word extends TheLoai{
 	private String tu;
 	private String[] giaTriTruong = new String[100];
 
-
-
 	public String getTu() {
 		return tu;
 	}

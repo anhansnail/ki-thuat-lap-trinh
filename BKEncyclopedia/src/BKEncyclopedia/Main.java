@@ -4,10 +4,12 @@ import java.util.*;
 
 public class Main {
 	private static Scanner inputMain;
-
+	
 	public static void main(String[] args) {
 		
 		inputMain = new Scanner(System.in);
+		word tu1 = new word();
+		
 		System.out.println("1: Tra tu");
 		System.out.println("2: Them tu");
 		System.out.println("3: Them the loai");
@@ -16,15 +18,17 @@ public class Main {
 		System.out.println("6: Sua, xoa the loai");
 		System.out.println("7: Thoat");
 		
-		/*
+		
 		System.out.println("Ban muon lam gi:");
 		int LuaChon = inputMain.nextInt();
 		switch(LuaChon) {
 			case 1:
 				// Tra tu
+				tu1.HienThiTT();
 				break;
 			case 2:
 				// Them tu
+				tu1.nhapTT();
 				break;
 			case 3:
 				// Them the loai
@@ -40,12 +44,8 @@ public class Main {
 				break;
 			case 7:
 				// Thoat chuong trinh
-				
+				break;
 		}
-		*/
-		TheLoai t1 = new TheLoai();
-		t1.nhapTT();
-		t1.HienThiTT();
 	}
 
 }

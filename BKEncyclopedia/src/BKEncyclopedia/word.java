@@ -7,12 +7,16 @@ public class word extends TheLoai{
 	
 	private String tu;
 	private String[] giaTriTruong = new String[100];
+	
+	public word(String tu, String maTheLoai, String[] giaTriTruong) {
+		super(tu, maTheLoai, giaTriTruong);
+		
+	}
 
 	public String getTu() {
 		return tu;
 	}
-
-
+	
 	public void setTu(String tu) {
 		this.tu = tu;
 	}
@@ -25,7 +29,6 @@ public class word extends TheLoai{
 	public void setGiaTriTruong(String[] giaTriTruong) {
 		this.giaTriTruong = giaTriTruong;
 	}
-
 
 	public void setSoTruong(int soTruong) {
 		this.soTruong = soTruong;
@@ -42,7 +45,7 @@ public class word extends TheLoai{
 	}
 	
 	public void hienThiTT() {
-		System.out.println(tu);
+		System.out.println();
 		System.out.println(maTheLoai);
 		for(int i = 0; i <= this.soTruong; i++)
 			System.out.println(this.giaTriTruong[i]);

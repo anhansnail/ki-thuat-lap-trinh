@@ -4,84 +4,98 @@ import java.util.*;
 
 
 public class Main {
-	private static Scanner inputMain;
+	private static Scanner sc = new Scanner(System.in);
 	
-	static TheLoai[] theloai = new TheLoai[100];
-	static word[] tu = null;
-	public static int demTheLoai = 0;
+	static Category[] category = new Category[261];
+	static Word[] word = new Word[261];
 	
-	public static void main(String[] args) {		
-		inputMain = new Scanner(System.in);
+	private static int categoryCounter = 0;
+	private static int wordCounter = 0;
 	
-		int luaChon = 0;
+	public static void main(String[] args) {
 		
+		int choice;
 		do {
-			HienThiMenu();
-			luaChon = inputMain.nextInt();
-			switch(luaChon) {
-				case 1: // tra tu
-					traTu();
+			showMenu();
+			choice = sc.nextInt();
+			switch(choice) {
+				case 1:
+					searchWord();
 					break;
-				case 2: // Them tu
-					themTu();
+				case 2:
+					addWord();
 					break;
-				case 3: // Them the loai
-					themTheLoai();
+				case 3:
+					addCategory();
 					break;
-				case 4: // Thong ke tat ca cac tu trong the loai
-					lietKeTuTrongTheLoai();
+				case 4:
+					listWord();
 					break;
-				case 5:  // Sua, xoa tu
-					suaTu();
+				case 5:
+					editWord();
 					break;
-				case 6:  // Sua xoa the loai
-					suaTheLoai();
-					break;
-				case 7:  // Thoat chuong trinh
+				case 6:
+					//editCategory();
 					break;
 			}
-		} while( luaChon != 7);
-		
-		inputMain.close();
-	}
-	public static void HienThiMenu() {
-		System.out.println("MENU:  ");
+			
+		} while (choice != 7);
+	System.out.println("BYE BYE!");
+	sc.close();
+}
+	
+	public static void showMenu() {
+		System.out.println("MENU");
 		System.out.println("1: Tra tu");
 		System.out.println("2: Them tu");
 		System.out.println("3: Them the loai");
-		System.out.println("4: Liet ke cac tu trong the loai");
+		System.out.println("4: Liet ke tu trong the loai");
 		System.out.println("5: Sua, xoa tu");
 		System.out.println("6: Sua, xoa the loai");
 		System.out.println("7: Thoat");
+	}
+	
+	public static void searchWord() {
+		Scanner sc2 = new Scanner(System.in);
 		
-		System.out.println("Ban muon lam gi:");
-	}
-	
-	public static void traTu() {
+		System.out.println("Nhap vao tu can tra:");
+		String w = new String();
+		w = sc2.nextLine();
 		
-		return;
-	}
-
-	public static void themTu() {
+		for(int i = 0; i < wordCounter; i++) {
+			if(word[i].getWord().equals(w)) {
+				word[i].showInfo();
+				return;
+			}
+		}
 		
+		System.out.println("Khong tim thay trong tu dien!");
 		return;
 	}
 	
-	public static void themTheLoai() {
-		theloai[demTheLoai] = new TheLoai();
-		theloai[demTheLoai].NhapTT();
-		demTheLoai++;
+	public static void addWord() {
+		word[wordCounter] = new Word();
+		word[wordCounter].getInfo();
+		wordCounter++;
 		return;
 	}
 	
-	public static void lietKeTuTrongTheLoai() {
-		return;
-	}
-	public static void suaTu() {
+	public static void addCategory() {
+		category[categoryCounter] = new Category();
+		category[categoryCounter].getInfo();
+		categoryCounter++;
 		return;
 	}
 	
-	public static void suaTheLoai() {
+	public static void listWord() {
+		return;
+	}
+	
+	public static void editWord() {
+		return;
+	}
+	
+	public static void editCategory() {
 		return;
 	}
 	

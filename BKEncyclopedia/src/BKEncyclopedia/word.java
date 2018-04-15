@@ -2,53 +2,69 @@ package BKEncyclopedia;
 
 import java.util.*;
 
-public class word extends TheLoai{
-	Scanner inputWord = new Scanner(System.in);
+public class Word{
 	
-	private String tu;
-	private String[] giaTriTruong = new String[100];
-	
-	public word(String tu, String maTheLoai, String[] giaTriTruong) {
-		super(tu, maTheLoai, giaTriTruong);
+	Scanner sc = new Scanner(System.in);
+	private String word;
+	private String categoryCode;
+	private int nFields;
+	private String[] fieldValue = new String[261];
+
+	public Word() {
 		
 	}
 
-	public String getTu() {
-		return tu;
+	public Word(String word, String categoryCode, String[] fieldsValue) {
+		this.word = word;
+		this.categoryCode = categoryCode;
+		for(int i = 0; i <= nFields; i++)
+			this.fieldValue[i] = fieldValue[i];
 	}
 	
-	public void setTu(String tu) {
-		this.tu = tu;
+	public String getWord() {
+		return word;
 	}
 
-	public String[] getGiaTriTruong() {
-		return giaTriTruong;
+	public void setWord(String word) {
+		this.word = word;
 	}
 
-
-	public void setGiaTriTruong(String[] giaTriTruong) {
-		this.giaTriTruong = giaTriTruong;
+	public String getCategoryCode() {
+		return categoryCode;
 	}
 
-	public void setSoTruong(int soTruong) {
-		this.soTruong = soTruong;
+	public void setCategoryCode(String categoryCode) {
+		this.categoryCode = categoryCode;
 	}
 
-	public void nhapTT() {
+	public String[] getFieldsValue() {
+		return fieldValue;
+	}
+
+	public void setFieldsValue(String[] fieldsValue) {
+		this.fieldValue = fieldsValue;
+	}
+
+	public void getInfo() {
 		System.out.println("nhap vao tu:");
-		tu = inputWord.nextLine();
+		this.word = sc.nextLine();
+		
 		System.out.println("Nhap vao ma the loai");
-		this.maTheLoai = inputWord.nextLine();
+		this.categoryCode = sc.nextLine();
+		
+		System.out.println("Nhap vao so truong cac truong:");
+		this.nFields = sc.nextInt();
+		
 		System.out.println("Nhap vao gia tri cac truong");
-		for(int i = 0; i <= this.soTruong; i++)
-			giaTriTruong[i] = inputWord.nextLine();
+		for(int i = 0; i <= this.nFields; i++)
+			fieldValue[i] = sc.nextLine();
 	}
 	
-	public void hienThiTT() {
-		System.out.println();
-		System.out.println(maTheLoai);
-		for(int i = 0; i <= this.soTruong; i++)
-			System.out.println(this.giaTriTruong[i]);
+	public void showInfo() {
+		System.out.println(word);
+		System.out.println(categoryCode);
+		for(int i = 1; i <= this.nFields; i++)
+			System.out.println(this.fieldValue[i]);
 	}
 	
 	

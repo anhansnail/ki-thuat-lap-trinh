@@ -45,7 +45,7 @@ public class Main {
 }
 	
 	public static void showMenu() {
-		System.out.println("MENU");
+		System.out.println("\t MENU");
 		System.out.println("1: Tra tu");
 		System.out.println("2: Them tu");
 		System.out.println("3: Them the loai");
@@ -88,6 +88,15 @@ public class Main {
 	}
 	
 	public static void listWord() {
+		Scanner sc2 = new Scanner(System.in);
+		
+		String gc = new String();
+		gc = sc2.nextLine();
+		for(int i = 0; i < wordCounter; i++) {
+			if(word[i].getCategoryCode().equals(gc)) {
+				word[i].showInfo();
+			}
+		}
 		return;
 	}
 	

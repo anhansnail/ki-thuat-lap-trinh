@@ -1,0 +1,20 @@
+tl1
+viet nam
+90 trieu
+vai km2
+
+tl2
+kinh
+1000
+200
+100000
+1
+22
+
+tl3
+thanh
+1
+2
+3
+4
+5

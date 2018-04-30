@@ -6,7 +6,7 @@ public class Word{
 	
 	Scanner sc = new Scanner(System.in);
 	private String word;
-	private String categoryCode;
+	private String categoryID;
 	private int nFields;
 	private String[] fieldValue = new String[261];
 
@@ -14,11 +14,11 @@ public class Word{
 		
 	}
 
-	public Word(String word, String categoryCode, String[] fieldsValue) {
+	public Word(String word, String categoryID, String[] fieldsValue) {
 		this.word = word;
-		this.categoryCode = categoryCode;
-		for(int i = 0; i <= nFields; i++)
-			this.fieldValue[i] = fieldValue[i];
+		this.categoryID = categoryID;
+		this.nFields = fieldsValue.length;
+		this.fieldValue = fieldsValue;
 	}
 	
 	public String getWord() {
@@ -29,16 +29,24 @@ public class Word{
 		this.word = word;
 	}
 
-	public String getCategoryCode() {
-		return categoryCode;
+	public String getCategoryID() {
+		return categoryID;
 	}
 
-	public void setCategoryCode(String categoryCode) {
-		this.categoryCode = categoryCode;
+	public void setcategoryID(String categoryID) {
+		this.categoryID = categoryID;
 	}
 
 	public String[] getFieldsValue() {
 		return fieldValue;
+	}
+
+	public int getnFields() {
+		return nFields;
+	}
+
+	public void setnFields(int nFields) {
+		this.nFields = nFields;
 	}
 
 	public void setFieldsValue(String[] fieldsValue) {
@@ -50,21 +58,22 @@ public class Word{
 		this.word = sc.nextLine();
 		
 		System.out.println("Nhap vao ma the loai");
-		this.categoryCode = sc.nextLine();
+		this.categoryID = sc.nextLine();
 		
 		System.out.println("Nhap vao so truong cac truong:");
-		this.nFields = sc.nextInt();
+		this.nFields = sc.nextInt();sc.nextLine();
 		
 		System.out.println("Nhap vao gia tri cac truong");
-		for(int i = 0; i <= this.nFields; i++)
+		for(int i = 0; i < this.nFields; i++)
 			fieldValue[i] = sc.nextLine();
 	}
 	
 	public void showInfo() {
 		System.out.println(word);
-		System.out.println(categoryCode);
-		for(int i = 1; i <= this.nFields; i++)
+		System.out.println(categoryID);
+		for(int i = 0; i < this.nFields; i++)
 			System.out.println(this.fieldValue[i]);
+		System.out.println();
 	}
 	
 	

@@ -1,0 +1,12 @@
+tl1
+quoc gia
+tl1a;tl1b;
+
+tl2
+cong ty
+tl2a;tl2b;
+
+tl3
+dan toc
+tl3a;tl3b;
+

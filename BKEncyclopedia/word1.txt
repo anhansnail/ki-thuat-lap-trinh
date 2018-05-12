@@ -10,18 +10,21 @@ ahihi2
 
 cong ty 1
 tl2
-1
-ha nam
+100000
+ha noi
+tnhh
 
 cong ty 2
 tl2
 20000
 thanh pho Ho Chi Minh
+mtv
 
 cong ty 3
 tl2
 10
 da nang
+mtv va tnhh
 
 dan toc 1
 tl3

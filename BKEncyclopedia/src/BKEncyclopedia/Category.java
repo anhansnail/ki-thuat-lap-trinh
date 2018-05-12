@@ -5,10 +5,10 @@ import java.util.*;
 public class Category {
 	Scanner sc = new Scanner(System.in);
 	
-	private String categoryID;
-	private String categoryName;
-	private int nFields;
-	private String[] fields = new String[261];
+	protected String categoryID;       			 
+	protected String categoryName;     			 
+	protected int nFields;                        
+	protected String[] fields = null;   
 
 	public Category() {
 		
@@ -47,26 +47,11 @@ public class Category {
 		this.fields = fields;
 	}
 	
-	public void getInfo() {
-		System.out.println("Nhap vao ma the Loai:");
-		this.categoryID = sc.nextLine();
-		
-		System.out.println("Nhap vao ten the loai:");
-		this.categoryName = sc.nextLine();
-		
-		System.out.println("Nhap vao so luong cac truong trong the loai:");
-		this.nFields = sc.nextInt();sc.nextLine();      
-		
-		System.out.println("Nhap vao ten cac truong:");
-		for(int i = 0; i < this.nFields; i++) 
-			this.fields[i] = sc.nextLine();
-	}
-	
 	public void showInfo() {
 		System.out.println(categoryID);
 		System.out.println(categoryName);
 		for(int i = 0; i < this.nFields; i++)
 			System.out.print(fields[i] + "; ");
-		System.out.println();
+		System.out.println("\n");
 	}
 }

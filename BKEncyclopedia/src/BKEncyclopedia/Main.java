@@ -14,14 +14,23 @@ public class Main {
 	
 	public static void main(String[] args) throws Exception {
 		
+		// Đọc dữ liệu có sẵn trong các file dữ liệu
 		readFileCategory();
 		readFileWord();
 		
-		int choice;
+		int choice = 0;
 		do {
 			showMenu();
-			choice = sc.nextInt();
-			sc.nextLine();
+			try {
+				choice = sc.nextInt();
+				if(choice <= 0 || choice > 9) {
+					Exception errorNumber = new Exception();
+					throw errorNumber;
+				}
+			} catch(Exception e) {
+				System.out.println("Bạn phải nhập vào một số nguyên dương từ 1 - 9");
+			}
+			sc.nextLine();                               // Tránh lỗi khi nhập số
 			switch(choice) {
 				case 1:
 					searchWord();
@@ -62,24 +71,24 @@ public class Main {
 		
 	System.out.println("BYE BYE!");
 	sc.close();
-	
 }
 	
 	public static void showMenu() {
 		System.out.println("\t MENU");
-		System.out.println("1: Tra tu");
-		System.out.println("2: Them tu");
-		System.out.println("3: Them the loai");
-		System.out.println("4: Liet ke tu trong the loai");
-		System.out.println("5: Sua tu");
-		System.out.println("6: Xoa tu");
-		System.out.println("7: Sua the loai");
-		System.out.println("8: Xoa the loai");
-		System.out.println("9: Thoat");
+		System.out.println("1: Tra từ");
+		System.out.println("2: Thêm từ");
+		System.out.println("3: Thêm thể loại");
+		System.out.println("4: Liệt kê tất cả các từ trong thể loại");
+		System.out.println("5: Sửa từ");
+		System.out.println("6: Xóa từ");
+		System.out.println("7: Sửa thể loại");
+		System.out.println("8: Xóa thể loại");
+		System.out.println("9: Thoát");
 	}
 	
+	// tra từ được nhập vào
 	public static void searchWord() {
-		System.out.println("Nhap vao tu can tra:");
+		System.out.println("Nhập vào từ cần tra:");
 		String sw = sc.nextLine();
 		
 		for(int i = 0; i < wordCounter; i++) {
@@ -89,18 +98,21 @@ public class Main {
 			}
 		}
 		
-		System.out.println("Khong tim thay trong tu dien!");
+		System.out.println("Không tìm thấy từ trong từ điển!");
 		return;
 	}
 	
+	// Thêm 1 từ
 	public static void addWord() {	
-		System.out.println("Nhap vao ma the loai:");
+		System.out.println("Nhập vào mã thể loại:");
 		String categoryID = sc.nextLine();
+		
+		// Kiểm tra thể loại có tồn tại không
 		for(int i = 0; i < categoryCounter; i++) {
 			if(category[i].getcategoryID().equals(categoryID)) {
-				System.out.println("Nhap vao tu:");
+				System.out.println("Nhập vào từ:");
 				String wordTemp = sc.nextLine();
-				System.out.println("Nhap vao gia tri cac truong:");
+				System.out.println("Nhập vào giá trị các trường:");
 				String[] fieldsvalue = new String[category[i].getnFields()];
 				
 				String[] tempArr = category[i].getFields();
@@ -114,18 +126,36 @@ public class Main {
 			}
 		}
 		
-		System.out.println("Khong ton tai the loai nay!");
+		System.out.println("Không tồn tại thể loại này!");
 		return;
 	}
 	
+	// Thêm 1 thể loại
 	public static void addCategory() throws Exception {
-		System.out.println("Nhap vao ma the loai:");
+		System.out.println("Nhập vào mã thể loại:");
 		String categoryID = sc.nextLine();
-		System.out.println("Nhap vao ten the loai:");
+		
+		for(int i = 0; i < categoryCounter; i++) {
+			if(category[i].getcategoryID().equals(categoryID)) {
+				System.out.println("Đã tồn tại thể loại này!");
+				return;
+			}
+		}
+		System.out.println("Nhập vào tên thể loại:");
 		String categoryName = sc.nextLine();
-		System.out.println("Nhap vao so truong cua the loai:");
-		int n = sc.nextInt();sc.nextLine();
-		System.out.println("Nhap vao ten cac truong:");
+		System.out.println("Nhập vào số trường của thế loại:");
+		int n = 0;
+		try {
+			n = sc.nextInt();
+			if( n < 0) {
+				Exception errorNumber = new Exception();
+				throw errorNumber;
+			}
+		}catch(Exception e) {
+			System.out.println("Bạn cần nhập vào một số nguyên dương!");
+		}
+		sc.nextLine();
+		System.out.println("Nhập vào tên các trường:");
 		String[] fields = new String[n];
 		for(int i = 0; i < n; i++) {
 			fields[i] = sc.nextLine();
@@ -136,28 +166,27 @@ public class Main {
 		return;
 	}
 	
+	// Liệt kê các từ trong thể loại
 	public static void listWord() {
-		System.out.println("Nhap vao ma the loai:");
-		String gc = new String();
-		gc = sc.nextLine();
+		System.out.println("Nhập vào tên và mã thể loại:");
+		String gc = sc.nextLine();
+		String IDgc = sc.nextLine();
+		
 		for(int i = 0; i < wordCounter; i++) {
-			if(word[i].getCategory().categoryID.equals(gc)) {
+			if(word[i].getCategory().getcategoryID().equals(IDgc) && word[i].getCategory().getCategoryName().equals(gc)) {
 				word[i].showInfo();
 			}
 		}
 		return;
 	}
 	
-	public static void editWord(int addr) {
-		
-	}
-	
+	// Sửa từ
 	public static void editWord() {	
-		System.out.println("Nhap vao tu va ma the loai cua tu can sua:");
+		System.out.println("Nhập vào từ và mã thể loại của từ cần sửa:");
 		String ew = sc.nextLine();
 		String ec = sc.nextLine();
 		for(int i = 0; i < wordCounter; i++) {
-			if(word[i].getWord().equals(ew) && word[i].getCategory().categoryID.equals(ec)) {
+			if(word[i].getWord().equals(ew) && word[i].getCategory().getcategoryID().equals(ec)) {
 				System.out.println("Nhap vao ma the loai:");
 				String categoryID = sc.nextLine();
 				for(int j = 0; j < categoryCounter; j++) {
@@ -181,9 +210,12 @@ public class Main {
 				}
 			}
 		}
+		
+		System.out.println("Không tồn tại từ này!");
 		return;
 	}
 	
+	// Xóa 1 từ tại vị trí xác định
 	public static void deleteWord(int addr) {
 		for(int i = addr; i < wordCounter; i++) {
 			word[i] = word[i+1];
@@ -191,34 +223,46 @@ public class Main {
 		wordCounter--;
 	}
 	
+	// Xóa 1 từ
 	public static void deleteWord() {
-		System.out.println("Nhap vao tu va the loai cua tu can xoa:");
+		System.out.println("Nhập vào từ và mã thể loại của từ cần xóa:");
 		String dw = sc.nextLine();
 		String dIDw = sc.nextLine();
 		for(int i = 0; i < wordCounter; i++) {
-			if(word[i].getWord().equals(dw) && word[i].getCategory().categoryID.equals(dIDw)) {
+			if(word[i].getWord().equals(dw) && word[i].getCategory().getcategoryID().equals(dIDw)) {
 				deleteWord(i);
 				return;
 			}
 		}
-		System.out.println("khong co tu " +dw + " trong tu dien");
+		System.out.println("Không tồn tại từ này!");
 		return;
 	}
 	
+	// Sửa 1 thể loại
 	public static void editCategory() throws Exception {		
-		System.out.println("Nhap vao ten the loai va ma the loai can sua: ");
+		System.out.println("Nhập vào tên thể loại và mã thể loại cần sửa: ");
 		String ec = sc.nextLine();
-		String eIDc = sc.nextLine();
+		String IDec = sc.nextLine();
 		
 		for(int i = 0; i < categoryCounter; i++) {
-			if(category[i].getCategoryName().equals(ec) && category[i].getcategoryID().equals(eIDc)) {
-				System.out.println("Nhap vao ma the loai:");
+			if(category[i].getCategoryName().equals(ec) && category[i].getcategoryID().equals(IDec)) {
+				System.out.println("Nhập vào mã thể loại:");
 				String categoryID = sc.nextLine();
-				System.out.println("Nhap vao ten the loai:");
+				System.out.println("Nhập vào tên thể loại:");
 				String categoryName = sc.nextLine();
-				System.out.println("Nhap vao so truong cua the loai:");
-				int n = sc.nextInt();sc.nextLine();
-				System.out.println("Nhap vao ten cac truong:");
+				System.out.println("Nhập vào số trường của thể loại:");
+				int n = 0;
+				try {
+					n = sc.nextInt();
+					if(n < 1 ) {
+						Exception errorNumber = new Exception();
+						throw errorNumber;
+					}
+				}catch(Exception e) {
+					System.out.println("Bạn phải nhập vào một số nguyên dương!");
+				}
+				sc.nextLine();
+				System.out.println("Nhập vào tên các trường:");
 				String[] fields = new String[n];
 				for(int j = 0; j < n; j++) {
 					fields[j] = sc.nextLine();
@@ -229,16 +273,15 @@ public class Main {
 				category[i].setnField(n);
 				category[i].setFields(fields);
 				
-				System.out.println("Ban can sua cac tu trong the loai " + ec);
+				System.out.println("Bạn cần sửa lại tất cả các từ trong thể loại " + ec);
 				
 				for(int j = 0; j < wordCounter; j++) {
-					System.out.println(word[j].getCategory().categoryID);
-					if(word[j].getCategory().categoryID.equals(eIDc)) {
-						System.out.println("Sua tu " +word[i].getWord());
+					if(word[j].getCategory().getcategoryID().equals(IDec)) {
+						System.out.println("Sửa từ " +word[i].getWord());
 						
-						System.out.println("Nhap vao tu:");
+						System.out.println("Nhập vào từ:");
 						String tempWord = sc.nextLine();
-						System.out.println("Nhap vao gia tri cac truong:");
+						System.out.println("Nhập vào giá trị các trường:");
 						String[] fieldsValue = new String[category[i].getnFields()];
 						String[] tempArr = category[i].getFields();
 						
@@ -250,7 +293,6 @@ public class Main {
 						word[j].setWord(tempWord);
 						word[j].setCategory(category[i]);
 						word[j].setFieldsValue(fieldsValue);
-						return;
 					}
 				}
 				break;
@@ -259,29 +301,33 @@ public class Main {
 		return;
 	}
 	
+	// Xóa 1 thể loại và xóa tất cả từ trong thể loại
 	public static void deleteCategory() {
-		System.out.println("Nhap vao ten the loai va ma the loai can xoa: ");
+		System.out.println("Nhập vào tên và mã thể loại cần xóa: ");
 		String dc = sc.nextLine();
 		String IDdc = sc.nextLine();
 		
+		// Xóa thể loại
 		for(int i = 0; i < categoryCounter; i++) {
 			if(category[i].getCategoryName().equals(dc) && category[i].getcategoryID().equals(IDdc)) {
 				for(int j = i; j < categoryCounter; j++) {
 					category[j] = category[j+1];
 				}
 				categoryCounter--;
-				System.out.println("Da xoa the loai " +dc);
+				System.out.println("Đã xóa thể loại " +dc);
 			}
 		}
 		
+		// Xóa các từ trong thể loại
 		for(int i = 0; i < wordCounter; i++) {
-			if(word[i].getCategory().categoryID.equals(IDdc)) {
+			if(word[i].getCategory().getcategoryID().equals(IDdc)) {
 				deleteWord(i);
 			}
 		}
 		return;
 	}
 
+	// Ghi các thể loại ra file
 	public static void updateFileCategory() throws IOException {
 		File file = new File("Category.txt");
 		FileWriter fw = new FileWriter(file);
@@ -297,14 +343,15 @@ public class Main {
 		return;
 	}
 	
+	// Ghi các từ ra file
 	public static void updateFileWord() throws IOException {
 		File file = new File("Word.txt");
 		FileWriter fw = new FileWriter(file);
 		for(int i = 0; i < wordCounter; i++) {
 			fw.write(word[i].getWord()+ "\r\n");
-			fw.write(word[i].getCategory().categoryID + "\r\n");
+			fw.write(word[i].getCategory().getcategoryID() + "\r\n");
 			String[] tempArr = word[i].getFieldsValue();
-			for(int j = 0; j < word[i].getCategory().nFields; j++) {
+			for(int j = 0; j < word[i].getCategory().getnFields(); j++) {
 				fw.write(tempArr[j]);
 				fw.write("\r\n");
 			}
@@ -314,6 +361,7 @@ public class Main {
 		return;
 	}
 	
+	// Đọc dữ liệu các thể loại từ file
 	public static void readFileCategory() throws IOException {
 		try {
 			File file = new File("Category.txt");
@@ -328,6 +376,12 @@ public class Main {
 		    while ((line = br.readLine()) != null){
 		    	tempLine[tempCounter] = line;
 		    	tempCounter ++;
+		    	
+		    	/* tempLine[0] lưu mã thể loại
+		    	 * tempLine[1] lưu tên thể loại
+		    	 * tempLine[2] đọc 1 chuỗi là danh sách các trường, sau đó được tách ra lưu vào mảng tempFields[]
+		    	 */
+		    	
 		    	if(tempCounter == 4) {
 		    		String[] tempFields = tempLine[2].split(";");
 		    		category[categoryCounter] = new Category(tempLine[0], tempLine[1], tempFields);
@@ -343,6 +397,7 @@ public class Main {
 		}
 	}
 	
+	// Đọc dữ liệu các từ từ file
 	public static void readFileWord() throws IOException {
 		try {
 			File file = new File("Word.txt");
@@ -362,11 +417,22 @@ public class Main {
 			    		tempFieldsValue[i] = tempLine[i+2];
 			    	}
 			    	
+			    	/* tempLine[0] lưu từ
+			    	 * tempLine[1] lưu mã thể loại của từ
+			    	 * từ tempLine[2] trở đi sẽ chuyển về mảng tempFieldsValue[] để lưu giá trị các trường
+			    	*/
+			    	
+			    	// kiểm tra mã thể loại đã có trong danh sách chưa, nếu có thì thêm từ
 			    	for(int j = 0; j < categoryCounter; j++) {
 			    		if(category[j].getcategoryID().equals(tempLine[1])) {
 			    			word[wordCounter] = new Word(tempLine[0], category[j], tempFieldsValue);
 			    			word[wordCounter].showInfo();
 					    	wordCounter++;
+					    	break;
+			    		}
+			    		
+			    		if(j == categoryCounter - 1) {
+			    			System.out.println("Không tồn tại thể loại này!");
 			    		}
 			    	}
 			    	tempCounter = 0;

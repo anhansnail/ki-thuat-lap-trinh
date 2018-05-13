@@ -5,9 +5,9 @@ import java.util.*;
 public class Word {
 	Scanner sc = new Scanner(System.in);
 	
-	private Category category;
-	private String word;                                    									
-	private String[] fieldsValue = new String[261];			 
+	private Category category;												// Thể loại của từ
+	private String word;                                    				// từ
+	private String[] fieldsValue = new String[261];			 				// Giá trị các trường
 
 	public Word() {
 		
@@ -43,10 +43,11 @@ public class Word {
 		this.fieldsValue = fieldsValue;
 	}
 	
+	// Hiện thông tin từ
 	public void showInfo() {
 		System.out.println(word);
-		System.out.println(category.categoryID);
-		for(int i = 0; i < category.nFields; i++)
+		System.out.println(category.getcategoryID());
+		for(int i = 0; i < category.getnFields(); i++)
 			System.out.println(this.fieldsValue[i]);
 		System.out.println();
 	}

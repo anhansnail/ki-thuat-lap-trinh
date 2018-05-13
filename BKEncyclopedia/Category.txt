@@ -1,12 +1,16 @@
-tl1
-quoc gia
-thu do;dan so;
+﻿tl1
+công ty
+số nhân viên;địa chỉ;loại công ty;
 
 tl2
-cong ty
-so nhan vien;dia chi,kieu cong ty;
+quốc gia
+thủ đô;dân số;
 
 tl3
-dan toc
-dan so;dia ban cu tru;
+dân tộc
+dân số;địa bàn cư trú;
+
+tl4
+xe máy
+hãng xe;màu sắc;loại xe;
 

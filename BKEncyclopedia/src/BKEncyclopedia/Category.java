@@ -5,10 +5,10 @@ import java.util.*;
 public class Category {
 	Scanner sc = new Scanner(System.in);
 	
-	protected String categoryID;       			 
-	protected String categoryName;     			 
-	protected int nFields;                        
-	protected String[] fields = null;   
+	private String categoryID;                          // Mã thể loại
+	private String categoryName;						// Tên thể loại
+	private int nFields;                        		// Số trường trong thể loại
+	private String[] fields = null;   					// Tên các trường
 
 	public Category() {
 		
@@ -47,6 +47,7 @@ public class Category {
 		this.fields = fields;
 	}
 	
+	// Hiện thông tin thể loại
 	public void showInfo() {
 		System.out.println(categoryID);
 		System.out.println(categoryName);

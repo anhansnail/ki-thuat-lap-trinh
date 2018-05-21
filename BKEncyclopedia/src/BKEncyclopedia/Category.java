@@ -1,9 +1,6 @@
 package BKEncyclopedia;
 
-import java.util.*;
-
 public class Category {
-	Scanner sc = new Scanner(System.in);
 	
 	private String categoryID;                          // Mã thể loại
 	private String categoryName;						// Tên thể loại

@@ -1,13 +1,10 @@
 package BKEncyclopedia;
 
-import java.util.*;
-
 public class Word {
-	Scanner sc = new Scanner(System.in);
 	
 	private Category category;												// Thể loại của từ
 	private String word;                                    				// từ
-	private String[] fieldsValue = new String[261];			 				// Giá trị các trường
+	private String[] fieldsValue = new String[100];			 				// Giá trị các trường
 
 	public Word() {
 		

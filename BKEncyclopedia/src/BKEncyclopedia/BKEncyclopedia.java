@@ -3,7 +3,7 @@ package BKEncyclopedia;
 import java.io.*;
 import java.util.*;
 
-public class Main {
+public class BKEncyclopedia {
 	private static Scanner sc = new Scanner(System.in);
 	
 	static Category[] category = new Category[1000];
@@ -195,7 +195,7 @@ public class Main {
 		for(int i = 0; i < wordCounter; i++) {
 			if(word[i].getCategory().getcategoryID().equals(IDgc) && word[i].getCategory().getCategoryName().equals(gc)) {
 				word[i].showInfo();
-				check = true;
+				check2 = true;
 			}
 		}
 		
@@ -401,7 +401,7 @@ public class Main {
 	public static void updateFileCategory() throws IOException {
 		File file = new File("Category.txt");
 		FileWriter fw = new FileWriter(file);
-		fw.write("\r\n");
+		fw.write("\r\n");                                  // ghi 1 dòng trống đầu tiên
 		for(int i = 0; i < categoryCounter; i++) {
 			fw.write(category[i].getcategoryID() + "\r\n");
 			fw.write(category[i].getCategoryName()+ "\r\n");
@@ -418,7 +418,7 @@ public class Main {
 	public static void updateFileWord() throws IOException {
 		File file = new File("Word.txt");
 		FileWriter fw = new FileWriter(file);
-		fw.write("\r\n");
+		fw.write("\r\n");                                  // ghi 1 dòng trống đầu tiên
 		for(int i = 0; i < wordCounter; i++) {
 			fw.write(word[i].getWord()+ "\r\n");
 			fw.write(word[i].getCategory().getcategoryID() + "\r\n");
@@ -443,9 +443,9 @@ public class Main {
 		    
 		    String line = new String();
 		    int tempCounter = 0;
-		    String[] tempLine = new String[261];
+		    String[] tempLine = new String[10];
 		    
-		    br.readLine();
+		    br.readLine();                              // đọc 1 dòng trống đầu tiên
 		    
 		    while ((line = br.readLine()) != null){
 		    	tempLine[tempCounter] = line;
@@ -467,7 +467,6 @@ public class Main {
 		    		}
 		    		String[] tempFields = tempLine[2].split(";");
 		    		category[categoryCounter] = new Category(tempLine[0], tempLine[1], tempFields);
-		    		category[categoryCounter].showInfo();
 		    		tempCounter = 0;
 		    		categoryCounter++;
 		    	}
@@ -489,8 +488,8 @@ public class Main {
 			
 			String line = new String();
 			int tempCounter = 0;
-			String[] tempLine = new String[261];
-			br.readLine();
+			String[] tempLine = new String[100];
+			br.readLine();                             // đọc 1 dòng trống đầu tiên
 			while ((line = br.readLine()) != null) {
 			    tempLine[tempCounter] = line;
 			    tempCounter++;
@@ -509,7 +508,6 @@ public class Main {
 			    	for(int j = 0; j < categoryCounter; j++) {
 			    		if(category[j].getcategoryID().equals(tempLine[1])) {
 			    			word[wordCounter] = new Word(tempLine[0], category[j], tempFieldsValue);
-			    			word[wordCounter].showInfo();
 					    	wordCounter++;
 					    	break;
 			    		}

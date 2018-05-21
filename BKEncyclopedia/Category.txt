@@ -1,13 +1,1 @@
 
-tl1
-quốc gia
-thủ đô;dân số;
-
-tl2
-công ty
-tổng giám đốc;địa chỉ;kiểu công ty;
-
-tl4
-dân tộc
-số người;địa bàn;
-
